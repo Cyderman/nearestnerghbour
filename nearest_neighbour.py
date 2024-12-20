@@ -73,7 +73,6 @@ if selected_horse_name:
         st.write(f"### Searched Horse")
         st.write(f"**Name**: {searched_horse['horse_name']}")
 
-
         # Find the embedding for the selected horse
         horse_index = data[data['horse_name'] == selected_horse_name].index[0]
         horse_vector = horse_embeddings[horse_index].reshape(1, -1)
@@ -87,8 +86,9 @@ if selected_horse_name:
             match = data.iloc[neighbor_idx]
             url = f"https://photofinish.live/horses/{match['horse_id']}"
             st.markdown(
-                f"**{rank}. {match['horse_name']}** 
-                f"- [View Horse Profile]({url})"
+                f"**{rank}. {match['horse_name']}**\n"
+                f"- [View Horse Profile]({url})\n"
+                f"- **Similarity Score**: {dist:.3f}"
             )
     else:
         st.error(f"Horse name '{selected_horse_name}' not found in the dataset.")
