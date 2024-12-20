@@ -73,9 +73,14 @@ if selected_horse_name:
         st.write(f"### Searched Horse")
         st.write(f"**Name**: {searched_horse['horse_name']}")
 
-        # Find the embedding for the selected horse
-        horse_index = data[data['horse_name'] == selected_horse_name].index[0]
-        horse_vector = horse_embeddings[horse_index].reshape(1, -1)
+        # Match the embedding using horse_id
+        horse_id = searched_horse['horse_id']
+        try:
+            horse_index = data.reset_index().query(f"horse_id == '{horse_id}'").index[0]
+            horse_vector = horse_embeddings[horse_index].reshape(1, -1)
+        except IndexError:
+            st.error(f"No embedding found for horse '{selected_horse_name}'.")
+            st.stop()
 
         # Get the top 5 nearest neighbors
         distances, indices = nn_model.kneighbors(horse_vector, n_neighbors=5)
