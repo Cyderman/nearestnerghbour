@@ -72,7 +72,7 @@ if selected_horse_name:
         searched_horse = data[data['horse_name'] == selected_horse_name].iloc[0]
         st.write(f"### Searched Horse")
         st.write(f"**Name**: {searched_horse['horse_name']}")
-        st.write(f"**Grade**: {searched_horse['grade']}")
+
 
         # Find the embedding for the selected horse
         horse_index = data[data['horse_name'] == selected_horse_name].index[0]
