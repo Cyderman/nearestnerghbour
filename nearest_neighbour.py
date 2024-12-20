@@ -87,13 +87,7 @@ if selected_horse_name:
             match = data.iloc[neighbor_idx]
             url = f"https://photofinish.live/horses/{match['horse_id']}"
             st.markdown(
-                f"**{rank}. {match['horse_name']}** (Grade: {match['grade']})\n"
-                f"- **Start**: {match['start']}\n"
-                f"- **Speed**: {match['speed']}\n"
-                f"- **Stamina**: {match['stamina']}\n"
-                f"- **Finish**: {match['finish']}\n"
-                f"- **Heart**: {match['heart']}\n"
-                f"- **Temper**: {match['temper']}\n"
+                f"**{rank}. {match['horse_name']}** 
                 f"- [View Horse Profile]({url})"
             )
     else:
